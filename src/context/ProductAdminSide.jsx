@@ -14,6 +14,7 @@ function ProductAmdminContextProvider(props) {
         gender: '',
         description: '',
         image: '',
+        price: '',
         organic: false,
         recycled: false
     });
@@ -56,6 +57,11 @@ function ProductAmdminContextProvider(props) {
                 ...prevFormData,
                 image:e.target.files[0]
             }));
+        }else if (name === 'price'){
+          setCreateProductFormData((prevFormData) => ({
+            ...prevFormData,
+            price: parseFloat(value)
+        }));
         }else if(name === 'organic'){
             setCreateProductFormData((prevFormData) => ({
                 ...prevFormData,
@@ -69,21 +75,30 @@ function ProductAmdminContextProvider(props) {
         }
     }
 
-    async function handleCreateProductSubmit(e){
-        e.preventDefault();
+    async function handleCreateProductSubmit(e) {
+      e.preventDefault();
 
-        const res = await axios.post(`${import.meta.env.VITE_BACKEND_CREATEPROD}`, createProductFormData);
-        console.log(res);
+      try {
+        const res = await axios.post(`${import.meta.env.VITE_CREATE_PRODUCT}`, createProductFormData);
+        if (res.status === 201) {
+          console.log('Product created successfully:', res.data);
+        } else {
+          console.error('Product creation failed with status code:', res.status);
+        }
+      } catch (error) {
+        console.error('Error while creating the product:', error);
+      }
     }
-    
-    const value = { 
+
+
+    const value = {
         handleCreateProductChange,
         createProductFormData,
         handleCreateProductSubmit
     };
 
-    
-    
+
+
     return (
         <ProductAmdminSide.Provider value={value}>
         {props.children}
