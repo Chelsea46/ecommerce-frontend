@@ -39,7 +39,7 @@ export default function CreateProject() {
                 <input name="recycled" type="checkbox" checked={createProductFormData.recycled} onChange={handleCreateProductChange} />
               <div className="flex mt-10">
                 <label htmlFor="image" className="font-bold block mb-5 text-white text-shadow mr-3 tracking-wide">Image:</label>
-                <input name="image" type="file" onChange={handleCreateProductChange} className=" block w-full bg-white rounded cursor-pointer file:cursor-pointer file:bg-white file:border-none file:rounded file:p-2.5 file:font-medium file:bg-green file:text-white file:hover:bg-white file:hover:text-black file:transition duration-400 file:hover:ease-in " />
+                <input name="image" type="file" onChange={handleCreateProductChange} className=" block w-full bg-white rounded cursor-pointer file:cursor-pointer file:border-none file:rounded file:p-2.5 file:font-medium file:bg-green file:text-white file:hover:bg-white file:hover:text-black file:transition duration-400 file:hover:ease-in " />
               </div>
             </div>
           </div>
